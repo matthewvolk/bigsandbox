@@ -11,22 +11,22 @@
     "./package.json": "./package.json",
     "./add": {
       "import": {
-        "types": "./dist/add.d.ts",
-        "default": "./dist/add.js"
+        "types": "./dist/add/index.d.ts",
+        "default": "./dist/add/index.js"
       },
       "default": {
-        "types": "./dist/add.d.cts",
-        "default": "./dist/add.cjs"
+        "types": "./dist/add/index.d.cts",
+        "default": "./dist/add/index.cjs"
       }
     },
     "./subtract": {
       "import": {
-        "types": "./dist/subtract.d.ts",
-        "default": "./dist/subtract.js"
+        "types": "./dist/subtract/index.d.ts",
+        "default": "./dist/subtract/index.js"
       },
       "default": {
-        "types": "./dist/subtract.d.cts",
-        "default": "./dist/subtract.cjs"
+        "types": "./dist/subtract/index.d.cts",
+        "default": "./dist/subtract/index.cjs"
       }
     }
   },
