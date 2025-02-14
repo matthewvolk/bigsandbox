@@ -1,10 +1,9 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entryPoints: ['src/**/*.ts'],
-  format: ['cjs', 'esm'],
+  entry: ["src/*.ts", "!src/*.test.ts"],
+  format: ["cjs", "esm"],
   dts: true,
-  outDir: 'dist',
   clean: true,
-  treeshake: true,
+  outDir: "dist",
 });

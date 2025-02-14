@@ -1,11 +1,12 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "noEmit": true,
 
     "esModuleInterop": true,
     "skipLibCheck": true,
     "target": "es2022",
+    "allowJs": true,
+    "checkJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
@@ -15,9 +16,8 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 
-    "module": "preserve",
-
-    "lib": ["es2022"]
+    "module": "preserve"
   },
+  "include": ["src/**/*", "scripts/**/*"],
   "exclude": ["node_modules"]
 }
