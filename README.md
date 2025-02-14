@@ -40,7 +40,9 @@ import { foo } from "bigsandbox/foo";
 
 This project is built using [`tsup`](https://github.com/egoist/tsup) and publishes its build outputs via the `exports` field in `package.json`. Both the build and package settings are configured to work with TypeScript files a single level deep under the `src` directory. This section explains how you can add new programs for package consumers.
 
-### (Simple) Single File Program (e.g., `src/foo.ts`)
+### Adding New Modules
+
+#### (Simple) Single File Program (e.g., `src/foo.ts`)
 
 If you want to add a simple program, simply create a new file directly under the `src` folder:
 
@@ -66,7 +68,7 @@ const { foo } = require("bigsandbox/foo");
 console.log(foo());
 ```
 
-### (Complex) Multi-File Program (e.g., a full program under `src/bar`)
+#### (Complex) Multi-File Program (e.g., a full program under `src/bar`)
 
 If your program requires multiple files (say, a folder structure with many supporting modules), you should do the following:
 
@@ -117,7 +119,7 @@ export function bar() {
 ```ts
 // src/bar.ts
 
-export * from "./bar";
+export * from "./bar/bar";
 ```
 
 With this setup, the compiled build will output `dist/bar.js` (or `.cjs`) returned from the entry point `src/bar.ts`. Consumers can import the program by simply using:
@@ -132,6 +134,38 @@ const { bar } = require("bigsandbox/bar");
 bar();
 ```
 
+#### Ensure the library is tree-shakable
+
+Before publishing, you can check that the library is still tree-shakable with [`agadoo`](https://github.com/Rich-Harris/agadoo) by running:
+
+```sh
+pnpm run agadoo
+```
+
+#### Ensure no issues exist with TypeScript types
+
+[`arethetypeswrong`](https://github.com/arethetypeswrong/cli) attempts to analyze npm package contents for issues with their TypeScript types, particularly ESM-related module resolution issues. Can detect issues like `Resolution failed`, `No types`, `Internal resolution error`, etc.
+
+Before publishing, use it by running:
+
+```sh
+pnpm run attw
+```
+
+### CLI
+
+The CLI is built using [`tsup`](https://github.com/egoist/tsup) and published to the `bin` directory. The CLI entry point is `cli/index.ts`.
+
+### Scripts
+
+The `scripts` directory is a useful place to put one-off scripts that don't fit in other directories.
+
+Scripts are typically written in plain JavaScript and are executed using Node.js:
+
+```sh
+node scripts/foo.js
+```
+
 ### Testing
 
 This project uses [`vitest`](https://vitest.dev/) for testing.
@@ -140,6 +174,8 @@ To add a test for a single file program, simply create a new file in the `src` d
 
 ```ts
 // src/foo.test.ts
+
+import { test, expect } from "vitest";
 
 import { foo } from "./foo";
 
@@ -152,6 +188,8 @@ For a multi-file program, you can create a test file in the program’s folder:
 
 ```ts
 // src/bar/bar.test.ts
+
+import { test, expect } from "vitest";
 
 import { bar } from "./bar";
 
@@ -170,22 +208,4 @@ or in watch mode using:
 
 ```sh
 pnpm run dev
-```
-
-### Check that the library is tree-shakable
-
-Before publishing, you can check that the library is still tree-shakable with [`agadoo`](https://github.com/Rich-Harris/agadoo) by running:
-
-```sh
-pnpm run agadoo
-```
-
-### Analyze package for issues with TypeScript types
-
-[`arethetypeswrong`](https://github.com/arethetypeswrong/cli) attempts to analyze npm package contents for issues with their TypeScript types, particularly ESM-related module resolution issues. Can detect issues like `Resolution failed`, `No types`, `Internal resolution error`, etc.
-
-Before publishing, use it by running:
-
-```sh
-pnpm run attw
 ```
