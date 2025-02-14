@@ -1,17 +1,16 @@
 name: ci
 
 on:
-  push:
-    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
+    branches: [main]
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
-  fmt-lint-typecheck-test-build:
+  fmt-lint-typecheck-test-build-attw-agadoo:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,3 +43,9 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+      - name: Run attw
+        run: pnpm run attw
+
+      - name: Run agadoo
+        run: pnpm run agadoo
