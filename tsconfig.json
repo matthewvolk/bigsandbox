@@ -18,6 +18,6 @@
 
     "module": "preserve"
   },
-  "include": ["src/**/*", "scripts/**/*"],
+  "include": ["src/**/*", "scripts/**/*", "cli/**/*"],
   "exclude": ["node_modules"]
 }

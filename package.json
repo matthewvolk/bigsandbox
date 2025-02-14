@@ -16,8 +16,10 @@
   "module": "./dist/index.js",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
+  "bin": "./bin/index.cjs",
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "packageManager": "pnpm@10.0.0",
   "scripts": {
