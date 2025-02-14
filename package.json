@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "author": "Matthew Volk",
   "type": "module",
+  "files": [
+    "dist",
+    "bin"
+  ],
   "exports": {
     "./*": {
       "import": "./dist/*.js",
@@ -17,10 +21,6 @@
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "bin": "./bin/index.cjs",
-  "files": [
-    "dist",
-    "bin"
-  ],
   "packageManager": "pnpm@10.0.0",
   "scripts": {
     "dev": "vitest",
@@ -32,9 +32,11 @@
     "attw": "attw --pack .",
     "agadoo": "agadoo"
   },
+  "dependencies": {},
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.3",
     "@eslint/js": "^9.17.0",
+    "@types/node": "^22.13.4",
     "agadoo": "^3.0.0",
     "eslint": "^9.17.0",
     "eslint-plugin-import": "^2.31.0",
@@ -44,8 +46,5 @@
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.19.1",
     "vitest": "^2.1.8"
-  },
-  "dependencies": {
-    "@types/node": "^22.13.4"
   }
 }
