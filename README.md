@@ -21,6 +21,8 @@ npm install --save-exact bigsandbox
 
 ## Usage
 
+### Modules
+
 ```ts
 // TypeScript
 import { foo } from "bigsandbox/foo";
@@ -34,6 +36,12 @@ const { foo } = require("bigsandbox/foo");
 ```js
 // ES Module
 import { foo } from "bigsandbox/foo";
+```
+
+### CLI
+
+```sh
+npx bigsandbox
 ```
 
 ## Contributing
